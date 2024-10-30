@@ -1,8 +1,6 @@
-export const ImageUpload = ({
-  onImageChange,
-}: {
-  onImageChange: (file: File) => void;
-}) => (
+import { IImageUpload } from "./interfaces";
+
+export const ImageUpload = ({ onImageChange, onSubmitImage }: IImageUpload) => (
   <form>
     <input
       type="file"
@@ -13,5 +11,8 @@ export const ImageUpload = ({
         if (file) onImageChange(file);
       }}
     />
+    <button type="submit" onClick={onSubmitImage}>
+      Submit
+    </button>
   </form>
 );

@@ -1,7 +1,7 @@
 export const PredictionList = ({
   predictions,
 }: {
-  predictions: PredictionItem[];
+  predictions: IPredictionItem[];
 }) => (
   <ol>
     {predictions.map((item, index) => (

@@ -1,8 +1,5 @@
 import { InvokeEndpointInput } from "aws-sdk/clients/sagemakerruntime";
-import Prediction from "../../../../../public/response.json";
 import AWS from "aws-sdk";
-import { readFile } from "fs/promises";
-import { writeFile } from "fs";
 
 export async function POST(request: Request) {
   const formData = await request.formData();
@@ -19,17 +16,6 @@ export async function POST(request: Request) {
     AWS_REGION: region,
     AWS_SAGEMAKER_ENDPOINT: endpointName,
   } = process.env;
-
-  await writeFile(
-    "src/app/api/v1/prediction/test.jpeg",
-    buffer,
-    "base64",
-    function (err) {
-      if (err) {
-        console.log(err);
-      }
-    }
-  );
 
   AWS.config.update({
     accessKeyId,
@@ -58,5 +44,5 @@ export async function POST(request: Request) {
       throw error;
     }
   }
-  return Response.json(Prediction);
+  return Response.json([]);
 }

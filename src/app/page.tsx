@@ -1,6 +1,6 @@
 "use client";
 import styles from "./page.module.css";
-import Labels from "../../public/labels.json";
+import Labels from "../../public/portugueseLabels.json";
 import { MouseEvent, useState } from "react";
 import { ImagePreview } from "@/app/_components/ImagePreview";
 import { ImageUpload } from "@/app/_components/ImageUpload";
@@ -38,12 +38,10 @@ export default function Home() {
   const handleSubmitImage = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setError(null);
-    console.log(selectedImage);
     if (selectedImage) {
       try {
         const formData = new FormData();
         formData.append("image", selectedImage);
-        console.log(formData);
         const predictionResponse = await axios.post(
           "/api/v1/prediction",
           formData,
@@ -58,7 +56,7 @@ export default function Home() {
       setError("Please select an image to submit.");
     }
   };
-  console.log(selectedImage);
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
